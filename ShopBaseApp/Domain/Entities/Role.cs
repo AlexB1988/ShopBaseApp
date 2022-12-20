@@ -13,12 +13,12 @@ namespace ShopBaseApp.Domain.Entities
             Users = new HashSet<User>();
         }
 
-        public class RolesConfiguration : IEntityTypeConfiguration<Role>
+        public class RoleConfiguration : IEntityTypeConfiguration<Role>
         {
             public void Configure(EntityTypeBuilder<Role> builder)
             {
                 builder.HasKey(x => x.Id);
-                builder.ToTable("User.List");
+                builder.ToTable("User.Role");
             }
         }
     }

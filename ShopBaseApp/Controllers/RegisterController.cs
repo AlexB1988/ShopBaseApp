@@ -20,23 +20,28 @@ namespace ShopBaseApp.Controllers
         {
             if(userName!=null && email!=null && password != null)
             {
-                PasswordHasher<User> passwordHasher=new PasswordHasher<User>();
-                var user = new User();
-                user = new User
+                var tempUser =_dataContext.Users.FirstOrDefault(u => u.UserName == userName || u.Email == email);
+                if (tempUser is null)
                 {
-                    UserName = userName,
-                    Email = email,
-                    Password = passwordHasher.HashPassword(user, password),
-                    RoleId = 2
-                };
+                    PasswordHasher<User> passwordHasher = new PasswordHasher<User>();
+                    var user = new User();
+                    user = new User
+                    {
+                        UserName = userName,
+                        Email = email,
+                        Password = passwordHasher.HashPassword(user, password),
+                        RoleId = 2
+                    };
 
-                await _dataContext.Users.AddAsync(user);
-                await _dataContext.SaveChangesAsync();
+                    await _dataContext.Users.AddAsync(user);
+                    await _dataContext.SaveChangesAsync();
+                    return Ok();
+                }
 
 
-                return Ok();
             }
-            return Ok();
+            throw new Exception("The user is alredy exists");
+           
         }
     }
 }

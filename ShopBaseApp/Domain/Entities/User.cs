@@ -18,7 +18,7 @@ namespace ShopBaseApp.Domain.Entities
             public void Configure(EntityTypeBuilder<User> builder)
             {
                 builder.HasKey(x => x.Id);
-                builder.ToTable("User.Role");
+                builder.ToTable("User.List");
                 builder.HasOne(d => d.Role)
                     .WithMany(x=>x.Users)
                     .HasForeignKey(x=>x.RoleId);

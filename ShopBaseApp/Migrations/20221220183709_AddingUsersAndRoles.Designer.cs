@@ -12,7 +12,7 @@ using ShopBaseApp.Domain;
 namespace ShopBaseApp.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221215191721_AddingUsersAndRoles")]
+    [Migration("20221220183709_AddingUsersAndRoles")]
     partial class AddingUsersAndRoles
     {
         /// <inheritdoc />
